@@ -1,0 +1,377 @@
+:root {
+    --small: 0.75em;
+    --normal: 1em;
+    --large: 1.5em;
+
+    --background: #FFF;
+    --borderDark: #555;
+    --borderLight: #999;
+    --disabled: #DDD;
+    --text: #000;
+
+    --_black: 0, 0 ,0;
+    --_selected: 170, 85, 170;
+    --_selectedText: 255, 255, 255;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--normal);
+	margin: 0px;
+	padding: 0px;
+}
+
+/**
+ * HTML
+ */
+
+a,
+a:active,
+a:visited {
+    color: var(--text);
+    text-decoration: none;
+}
+
+body {
+    background: var(--background);
+    margin: auto;
+    margin-top: 10px;
+    width: 75%;
+}
+
+hr {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    border: 0px;
+    display: block;
+    height: 2px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/**
+ * Classes
+ */
+ 
+.album {
+    text-align: left;
+    margin-bottom: 100px;
+    width: 100%;
+}
+
+.album img {
+    vertical-align: bottom; /* Voorkom witte lijn onder afbeelding. */
+}
+
+.album__list {
+    display: block;
+}
+
+.album__list--title {
+    font-size: var(--normal);
+}
+
+.album__list--subtitle {
+    font-size: var(--small);
+}
+
+.album__thumbnail {
+    display: inline-block;
+    margin-right: 15px; 
+    margin-top: 15px;
+    max-width: 100%; /* Voorkom dat enorme panorama's buiten het beeld komen. */
+    min-width: 100px;
+    overflow: hidden;
+    position: relative;
+    text-shadow: 1px 1px 4px #000;
+}
+
+.album__thumbnail:hover .album__thumbnail__image {
+    transform: scale(1.1);
+    transition: transform 3s; /* Zoom in. */
+}
+
+.album__thumbnail:hover .album__thumbnail__information {
+    background: rgb(var(--_selected), 0.5);
+    bottom: 0px;
+}
+
+.album__thumbnail:hover .album__thumbnail__overlay {
+    opacity: 0;
+    transition: all .25s ease-out 0s; /* Fade out. */
+}
+
+.album__thumbnail__image {
+    transition: transform 1s; /* Zoom out. */
+}
+
+.album__thumbnail__information {
+    background: rgba(var(--_black), 0.3);
+    color: rgb(var(--_selectedText));
+    font-weight: bold;
+    line-height: 1.5em;
+    overflow: hidden;
+    padding: 5px;
+    position: absolute;
+    text-overflow: ellipsis;
+    transition: all .25s ease-out 0s; /* Slide in. */
+    white-space: nowrap;
+    width: 100%;
+    z-index: 1;
+}
+
+.album__thumbnail__information--album {
+    bottom: 0px;
+    text-align: left;
+}
+
+.album__thumbnail__information--item {
+    bottom: -50px; /* Verberg de div buiten het zichtbare gebied. */
+    text-align: center;
+}
+
+.album__thumbnail__overlay {
+    left: 50%; /* Centreer afbeelding in div met position: absolute. */
+    top: 50%; /* Centreer afbeelding in div met position: absolute. */
+    opacity: 1;
+    position: absolute;
+    transform: translate(-50%, -50%); /* Centreer afbeelding in div met position: absolute. */
+    transition: all .25s ease-out 0s; /* Fade-in. */
+    z-index: 1;
+}
+
+.album__thumbnail__information--title {
+    font-size: var(--normal);
+}
+
+.album__thumbnail__information--subtitle {
+    font-size: var(--small);
+}
+
+.album__thumbnail__image--clip {
+    height: 300px;
+}
+
+.button {
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
+}
+
+.button:hover {
+    color: white;
+    background: rgb(var(--_selected));
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px black;
+}
+
+.button--disabled {
+    border-radius: 5px;
+    color: lightgray;
+    padding: 5px 10px 5px 10px;
+}
+
+.footer {
+    float: right;
+}
+
+.footer__to-top {
+    background: white;
+    border-radius: 10px;
+    bottom: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: none;
+    padding: 10px 15px 10px 15px;
+    position: fixed;
+    z-index: 99;
+}
+
+.footer__pagination {
+    background: white;
+    border-radius: 10px;
+    bottom: 30px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    left: 50%;
+    padding: 10px 15px 10px 15px;
+    position: fixed;
+    transform: translateX(-50%);
+    z-index: 99;
+}
+
+.header {
+    font-size: var(--large);
+    font-weight: bold;
+}
+
+.js-menu--hide {
+    opacity: 0;
+    margin-left: -500px;
+}
+
+.js-menu--show {
+    opacity: 1;
+    margin-left: 0px;
+}
+
+.menu {
+    background: #000;
+    font-size: var(--normal);
+    height: 100%;
+    left: 0px;
+    overflow-x: hidden;
+    padding-top: 64px;
+    position: fixed;
+    top: 0px;
+    transition: 0.5s;
+    white-space: nowrap;
+    width: 300px;
+    z-index: 10;
+}
+
+.menu--close-button {
+    background: black;
+    color: white;
+    margin-left: 64px;
+    padding: 4px;
+    position: absolute;
+    right: 32px;
+    top: 0;
+    width: auto;
+}
+
+.menu--item {
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    width: 100%;
+}
+
+.menu--item:hover {
+    background: rgb(var(--_selected));
+    color: rgb(var(--_selectedText));
+    text-shadow: 2px 2px black;
+}
+
+.menu--item:visited {
+    color: white;
+}
+
+.page {
+    transition: margin-left .5s;
+}
+
+.search input[type=text] {
+    background: white;
+    border: 0px;
+    border-radius: 25px 0px 0px 25px;
+    float: left;
+    height: 50px;
+    padding-left: 20px;
+    width: 150px;
+}
+
+.search button {
+    background: white;
+    border: 0px;
+    border-radius: 0px 25px 25px 0px;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+}
+
+.slideshow--init {
+    background: #DDD;
+    border: solid 1px var(--borderDark);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 15px;
+}
+
+.slideshow--init td {
+    padding: 5px;
+    vertical-align: baseline;
+}
+
+.slideshow {
+    display: table;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+}
+
+.slideshow__item {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@keyframes slideshow--fade-in-out {
+    0% { opacity: 0; }
+    16% { opacity: 1; }
+    84% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.viewer {
+    text-align: center;
+}
+
+.viewer__item {
+    height: 83vh;
+    text-align: center;
+}
+
+.viewer__item img,
+.viewer__item video {
+    height: 100%;
+    max-width: 100%;
+}
+
+.viewer__item iframe {
+    height: 100%;
+    min-width: 100vh;
+    min-height: 70vh;
+    resize: both;
+    overflow: auto;
+}
+
+/**
+ * Mobile.
+ */
+
+@media only screen and (max-width: 600px) {
+
+    .album__thumbnail {
+        max-width: 95%;
+    }
+
+    .viewer__item {
+        height: auto;
+    }
+
+    .viewer_item img {
+        height: auto;
+    }
+
+    .slideshow__item {
+        max-height: 100% ;
+        max-width: 100% ;
+        width: auto ;
+    }
+
+    .menu {
+        padding-top: 15px;
+    }
+    
+    .menu a {
+        font-size: 18px;
+    }
+
+    .js-menu--show {
+        width: 100%;
+    }
+
+}
